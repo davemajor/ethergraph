@@ -1,0 +1,49 @@
+<head>
+  <title>Ethergraph</title>
+  <script src="https://www.desmos.com/api/v0.2/desmos.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://www.desmos.com/api/v0.2/mathquill.js"></script>
+  <link href="https://www.desmos.com/api/v0.2/mathquill.css" rel="stylesheet" type="text/css" />
+  <style type='text/css'>
+    #equation-entry-box {
+      width: 300px;
+      border: 1px solid #aaa;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fluid-container">
+    <div class="row-fluid">
+      <div class="span6">
+        {{> grapher}}
+      </div>
+      <div class="span6">
+        {{> expressions}}
+      </div>
+    </div>
+  </div>
+</body>
+
+<template name="grapher">
+  {{#constant}}
+    <div id="graphpaper" style="width: 500px; height: 500px;"></div>
+  {{/constant}}
+  <span id="equation-entry-box", class="mathquill-editable"></span><button class="btn btn-primary" name="addPoint">Add</button>
+</template>
+
+<template name="expressions">
+  <h2>Expressions</h2>
+  <ul>
+    {{#each expressions}}
+      {{> expression}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="expression">
+  <li>
+    <span>{{latex}}</span> - <a href="#" data-id="{{id}}">Remove</a>
+  </li>
+</template>
